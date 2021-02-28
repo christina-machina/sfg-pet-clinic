@@ -4,10 +4,10 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table("visits")
+@Table(name = "visits")
 public class Visit extends BaseEntity{
 
-    @Column("date")
+    @Column(name = "date")
     private LocalDate date;
 
     @Column(name = "description")

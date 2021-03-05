@@ -97,7 +97,7 @@
                     <dependency>
                         <groupId>org.junit.platform</groupId>
                         <artifactId>junit-platform-commons</artifactId>
-                        <scope>test</scope>
+                        <scope>runtime</scope>
                     </dependency>
                 </dependencies>
             </plugin>

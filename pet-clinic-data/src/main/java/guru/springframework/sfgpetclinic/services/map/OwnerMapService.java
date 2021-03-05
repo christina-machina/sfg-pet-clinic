@@ -3,7 +3,6 @@ package guru.springframework.sfgpetclinic.services.map;
 import guru.springframework.sfgpetclinic.model.Owner;
 import guru.springframework.sfgpetclinic.model.Pet;
 import guru.springframework.sfgpetclinic.services.OwnerService;
-import guru.springframework.sfgpetclinic.services.PetService;
 import guru.springframework.sfgpetclinic.services.PetTypeService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
@@ -14,11 +13,11 @@ import java.util.Set;
 @Profile({"default", "map"})
 public class OwnerMapService extends AbstractMapService<Owner, Long> implements OwnerService {
     private final PetTypeService petTypeService;
-    private final PetService petService;
+    private final PetMapService petMapService;
 
-    public OwnerMapService(PetTypeService petTypeService, PetService petService) {
+    public OwnerMapService(PetTypeService petTypeService, PetMapService petMapService) {
         this.petTypeService = petTypeService;
-        this.petService = petService;
+        this.petMapService = petMapService;
     }
 
     @Override
@@ -34,7 +33,6 @@ public class OwnerMapService extends AbstractMapService<Owner, Long> implements 
     @Override
     public void delete(Owner object) {
         super.delete(object);
-
     }
 
     @Override
@@ -51,7 +49,7 @@ public class OwnerMapService extends AbstractMapService<Owner, Long> implements 
                         throw new RuntimeException("Pet Type is required");
                     }
                     if(pet.getId() == null){
-                        Pet savedPet=petService.save(pet);
+                        Pet savedPet=petMapService.save(pet);
                         pet.setId(savedPet.getId());
                     }
                 });
@@ -69,6 +67,10 @@ public class OwnerMapService extends AbstractMapService<Owner, Long> implements 
 
     @Override
     public Owner findByLastName(String lastName) {
-        return null;
+        return this.findAll()
+                .stream()
+                .filter(owner -> owner.getLastName().equalsIgnoreCase(lastName))
+                .findFirst()
+                .orElse(null);
     }
 }

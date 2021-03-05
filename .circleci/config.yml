@@ -19,7 +19,7 @@ jobs:
           name: Build
           command: mvn -B -DskipTests clean package
       # Then run your tests!
-      - run: mvn install DskipTests
+
       - run:
           name: Test
           command: mvn test

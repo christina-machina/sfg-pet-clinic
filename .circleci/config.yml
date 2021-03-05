@@ -19,9 +19,10 @@ jobs:
           name: Build
           command: mvn -B -DskipTests clean package
       # Then run your tests!
+      - run: mvn install DskipTests
       - run:
           name: Test
-          command: mvn install
+          command: mvn test
 
 workflows:
   # Below is the definition of your workflow.

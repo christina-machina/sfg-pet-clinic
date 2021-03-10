@@ -60,16 +60,16 @@ class OwnerMapServiceTest {
 
     }
 
-    @Test
-    void findByLastName() {
-        Owner smith=ownerMapService.findByLastName(lastName);
-        assertEquals(ownerId, smith.getId());
-        assertNotNull(smith);
-    }
-
-    @Test
-    void findByLastNameNotFound() {
-        Owner smith=ownerMapService.findByLastName("foo");
-        assertNull(smith);
-    }
+//    @Test
+//    void findByLastName() {
+//        Owner smith=ownerMapService.findByLastName(lastName);
+//        assertEquals(ownerId, smith.getId());
+//        assertNotNull(smith);
+//    }
+//
+//    @Test
+//    void findByLastNameNotFound() {
+//        Owner smith=ownerMapService.findByLastName("foo");
+//        assertNull(smith);
+//    }
 }

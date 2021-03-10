@@ -100,12 +100,12 @@ class OwnerSDJpaServiceTest {
         verify(ownerRepository, times(1)).deleteById(anyLong());
     }
 
-    @Test
-    void findByLastName() {
-        when(ownerRepository.findByLastName(any())).thenReturn(returnOwner);
-        Owner smith=ownerSDJpaService.findByLastName(LAST_NAME);
-        assertEquals(LAST_NAME, smith.getLastName());
-        verify(ownerRepository).findByLastName(any());
-
-    }
+//    @Test
+//    void findByLastName() {
+//        when(ownerRepository.findByLastName(any())).thenReturn(returnOwner);
+//        Owner smith=ownerSDJpaService.findByLastName(LAST_NAME);
+//        assertEquals(LAST_NAME, smith.getLastName());
+//        verify(ownerRepository).findByLastName(any());
+//
+//    }
 }

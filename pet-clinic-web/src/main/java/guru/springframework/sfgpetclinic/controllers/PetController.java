@@ -18,7 +18,6 @@ import java.util.Collection;
 @Controller
 @RequestMapping("owners/{ownerId}")
 public class PetController {
-    private static final String VIEWS_PETS_CREATE_OR_UPDATE_FORM="pets/createOrUpdateForm";
 
     private final PetService petService;
     private final OwnerService ownerService;
@@ -51,7 +50,7 @@ public class PetController {
         owner.getPets().add(pet);
         pet.setOwner(owner);
         model.addAttribute("pet", pet);
-        return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
+        return "pets/createOrUpdatePetForm";
     }
 
     @PostMapping("/pets/new")
@@ -62,7 +61,7 @@ public class PetController {
         owner.getPets().add(pet);
         if(result.hasErrors()){
             model.addAttribute("pet", pet);
-            return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
+            return "pets/createOrUpdatePetForm";
         }else{
             petService.save(pet);
             return "redirect:/owners/" + owner.getId();
@@ -72,7 +71,7 @@ public class PetController {
     @GetMapping("/pets/{petId}/edit")
     public String initUpdateForm (@PathVariable Long petId, Model model){
         model.addAttribute("pet", petService.findById(petId));
-        return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
+        return "pets/createOrUpdatePetForm";
     }
 
     @PostMapping("/pets/{petId}/edit")
@@ -80,7 +79,7 @@ public class PetController {
         if(result.hasErrors()){
             pet.setOwner(owner);
             model.addAttribute("pet", pet);
-            return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
+            return "pets/createOrUpdatePetForm";
         }else{
             owner.getPets().add(pet);
             petService.save(pet);
